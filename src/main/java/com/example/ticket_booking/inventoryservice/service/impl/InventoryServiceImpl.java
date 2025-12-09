@@ -1,7 +1,10 @@
 package com.example.ticket_booking.inventoryservice.service.impl;
 
 import com.example.ticket_booking.inventoryservice.dto.EventInventoryDto;
+import com.example.ticket_booking.inventoryservice.dto.VenueInventoryDto;
 import com.example.ticket_booking.inventoryservice.entity.Event;
+import com.example.ticket_booking.inventoryservice.entity.Venue;
+import com.example.ticket_booking.inventoryservice.exception.ResourceNotFoundException;
 import com.example.ticket_booking.inventoryservice.repository.EventRepository;
 import com.example.ticket_booking.inventoryservice.repository.VenueRepository;
 import com.example.ticket_booking.inventoryservice.service.InventoryService;
@@ -25,5 +28,15 @@ public class InventoryServiceImpl implements InventoryService {
                 .capacity(event.getLeftCapacity())
                 .venue(event.getVenue())
                 .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public VenueInventoryDto getVenueInformation(final Long venueId) {
+        Venue venue = venueRepository.findById(venueId)
+                .orElseThrow(() -> new ResourceNotFoundException(("Venue with id " + venueId + " not found")));
+        return VenueInventoryDto.builder()
+                .venueId(venue.getId())
+                .venueName(venue.getName())
+                .totalCapacity(venue.getTotalCapacity()).build();
     }
 }
