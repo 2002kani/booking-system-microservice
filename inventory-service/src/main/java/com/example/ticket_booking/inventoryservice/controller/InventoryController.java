@@ -20,7 +20,7 @@ public class InventoryController {
     }
 
     @GetMapping("/inventory/venue/{venueId}")
-    public @ResponseBody VenueInventoryDto InventoryGetVenueById(@PathVariable("venueId") Long venueId){
+    public @ResponseBody VenueInventoryDto inventoryGetVenueById(@PathVariable("venueId") Long venueId){
         return inventoryService.getVenueInformation(venueId);
     }
 }
