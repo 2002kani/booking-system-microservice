@@ -13,6 +13,6 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingResponseDTO createBooking(BookingRequestDTO request){
-        return new BookingResponseDTO();
+        return BookingResponseDTO.builder().build();
     }
 }
