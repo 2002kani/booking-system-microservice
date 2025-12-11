@@ -8,4 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class BookingRequestDTO {
+    private Long userID;
+    private Long eventId;
+    private Long ticketCount;
 }
