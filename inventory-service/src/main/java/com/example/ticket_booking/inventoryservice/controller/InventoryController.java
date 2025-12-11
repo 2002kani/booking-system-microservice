@@ -4,6 +4,7 @@ import com.example.ticket_booking.inventoryservice.dto.EventInventoryDto;
 import com.example.ticket_booking.inventoryservice.dto.VenueInventoryDto;
 import com.example.ticket_booking.inventoryservice.service.InventoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,5 +23,11 @@ public class InventoryController {
     @GetMapping("/inventory/venue/{venueId}")
     public @ResponseBody VenueInventoryDto inventoryGetVenueById(@PathVariable("venueId") Long venueId){
         return inventoryService.getVenueInformation(venueId);
+    }
+
+    @GetMapping("/inventory/event/{event_id}")
+    public ResponseEntity<EventInventoryDto> inventoryForEvent(@PathVariable("event_id") Long eventId){
+        EventInventoryDto event = inventoryService.getEventInventory(eventId);
+        return ResponseEntity.ok(event);
     }
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface InventoryService {
     List<EventInventoryDto> getAllEvents();
     VenueInventoryDto getVenueInformation(Long venueId);
+    EventInventoryDto getEventInventory(Long id);
 }

@@ -39,4 +39,17 @@ public class InventoryServiceImpl implements InventoryService {
                 .venueName(venue.getName())
                 .totalCapacity(venue.getTotalCapacity()).build();
     }
+
+    @Override
+    public EventInventoryDto getEventInventory(final Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new ResourceNotFoundException(("Event with id " + eventId + " not found")));
+
+        return EventInventoryDto.builder()
+                .event(event.getName())
+                .capacity(event.getLeftCapacity())
+                .venue(event.getVenue())
+                .ticketPrice(event.getTicketPrice())
+                .build();
+    }
 }
