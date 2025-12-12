@@ -1,0 +1,5 @@
+ALTER TABLE "order"
+ALTER COLUMN customer_id DROP NOT NULL;
+
+ALTER TABLE "order"
+ALTER COLUMN event_id DROP NOT NULL;

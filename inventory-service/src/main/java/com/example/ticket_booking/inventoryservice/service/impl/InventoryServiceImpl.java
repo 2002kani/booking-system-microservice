@@ -46,6 +46,7 @@ public class InventoryServiceImpl implements InventoryService {
                 .orElseThrow(() -> new ResourceNotFoundException(("Event with id " + eventId + " not found")));
 
         return EventInventoryDto.builder()
+                .eventId(event.getId())
                 .event(event.getName())
                 .capacity(event.getLeftCapacity())
                 .venue(event.getVenue())
