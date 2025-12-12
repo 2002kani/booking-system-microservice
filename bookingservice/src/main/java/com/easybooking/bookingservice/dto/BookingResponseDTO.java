@@ -8,4 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class BookingResponseDTO {
+    private Long bookingId;
+    private Long userId;
+    private Long eventId;
+    private Long ticketCount;
+    private String ticketPrice;
 }

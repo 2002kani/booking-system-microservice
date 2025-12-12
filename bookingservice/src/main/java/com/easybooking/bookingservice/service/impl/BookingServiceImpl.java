@@ -17,15 +17,19 @@ public class BookingServiceImpl implements BookingService {
     private InventoryServiceClient inventoryServiceClient;
 
     @Override
-    public BookingResponseDTO createBooking(BookingRequestDTO request){
-        Customer customer =  customerRepository.findById(request.getUserID()).orElse(null);
+    public BookingResponseDTO createBooking(final BookingRequestDTO request){
+        final Customer customer =  customerRepository.findById(request.getUserId()).orElse(null);
 
         if(customer == null){
             throw new RuntimeException("Customer not found");
         }
 
-        final InventoryResponseDTO inventoryResponse = inventoryServiceClient.getInventory(request.getUserID());
+        final InventoryResponseDTO inventoryResponse = inventoryServiceClient.getInventory(request.getEventId());
         System.out.println("INVENTORY SERVICE RESPONSE: " + inventoryResponse);
+
+        if(inventoryResponse.getCapacity() < request.getTicketCount()){
+            throw new  RuntimeException("Not enough Tickets available");
+        }
 
         return BookingResponseDTO.builder().build();
     }

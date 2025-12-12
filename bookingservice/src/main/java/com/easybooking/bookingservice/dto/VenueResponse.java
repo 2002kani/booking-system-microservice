@@ -2,8 +2,7 @@ package com.easybooking.bookingservice.dto;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
