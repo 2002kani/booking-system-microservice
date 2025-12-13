@@ -1,17 +1,20 @@
-package com.easybooking.bookingservice.dto;
+package com.easybooking.bookingservice.event;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookingResponseDTO {
+public class BookingEvent {
     private Long userId;
     private Long eventId;
     private Long ticketCount;
     private BigDecimal totalPrice;
 }
+
