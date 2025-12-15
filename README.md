@@ -1,1 +1,3 @@
-The description of the full architecture is about to follow...
+# Complete Backend Architecture
+
+![easybooking Preview](./assets/ticket-system-architecture.png)
