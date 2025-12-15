@@ -5,10 +5,12 @@ import com.easybooking.orderservice.client.InventoryServiceClient;
 import com.easybooking.orderservice.entity.Order;
 import com.easybooking.orderservice.repository.OrderRepository;
 import com.easybooking.orderservice.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
