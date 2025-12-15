@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository;
-    private InventoryServiceClient inventoryServiceClient;
+    private final OrderRepository orderRepository;
+    private final InventoryServiceClient inventoryServiceClient;
 
     @KafkaListener(topics = "booking", groupId = "order-service")
     @Override
