@@ -7,6 +7,7 @@
 
 ## Tech Stack
 
-=> Java
-
-=> Spring Boot
+- Java
+- Spring Boot
+- Apache Kafka (Queue)
+- Flyway (DB Migration)
