@@ -9,5 +9,8 @@
 
 - Java
 - Spring Boot
-- Apache Kafka (Queue)
+
+- PostgreSQL (Database)
 - Flyway (DB Migration)
+
+- Apache Kafka (Queue)
