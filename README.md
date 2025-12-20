@@ -27,3 +27,17 @@ This project provides a complete, fully functional backend implementation of a t
 git clone https://github.com/2002kani/booking-system-microservice.git
 cd inventory-service
 ```
+
+2. Start Docker Container
+```
+docker compose up -d
+```
+
+3. Start services
+```
+cd inventory-service
+./mvnw spring-boot:run
+
+cd bookingservice
+./mvnw spring-boot:run
+```
