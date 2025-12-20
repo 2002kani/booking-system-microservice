@@ -18,3 +18,12 @@ This project provides a complete, fully functional backend implementation of a t
 - Keycloak (Auth security)
 - Spring Cloud routing (API Gateway)
 - Docker
+
+
+## How to use it
+
+1. Clone repository
+```
+git clone https://github.com/2002kani/booking-system-microservice.git
+cd inventory-service
+```
