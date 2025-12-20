@@ -4,11 +4,11 @@ import org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctio
 import org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.function.HandlerFunction;
-import org.springframework.web.servlet.function.RequestPredicates;
-import org.springframework.web.servlet.function.RouterFunction;
-import org.springframework.web.servlet.function.ServerResponse;
+import org.springframework.web.servlet.function.*;
 
+import java.net.URI;
+
+import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.setPath;
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.uri;
 import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions.http;
 
@@ -23,4 +23,20 @@ public class BookingServiceRoutes {
                     .before(uri("http://localhost:8081"))
                 .build();
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> bookingServiceApiDocs() {
+        return GatewayRouterFunctions.route("booking-service-api-docs")
+                .route(RequestPredicates.path("/docs/bookingservice/v3/api-docs"),
+                        http())
+                    .before(uri("http://localhost:8081"))
+                .filter((request, next) -> {
+                    ServerRequest modifiedRequest = ServerRequest.from(request)
+                            .uri(URI.create("http://localhost:8081/v3/api-docs"))
+                            .build();
+                    return next.handle(modifiedRequest);
+                })
+                .build();
+    }
+
 }

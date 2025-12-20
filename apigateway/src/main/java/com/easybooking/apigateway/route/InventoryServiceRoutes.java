@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.function.RequestPredicates;
 import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
+
+import java.net.URI;
 
 import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.uri;
 import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions.http;
@@ -32,6 +35,21 @@ public class InventoryServiceRoutes {
                 .route(PUT("/api/v1/inventory/event/{eventId}/capacity/{capacity}"), http())
                 .before(uri(INVENTORY_SERVICE_URL))
 
+                .build();
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> inventoryserviceApiDocs() {
+        return GatewayRouterFunctions.route("booking-service-api-docs")
+                .route(RequestPredicates.path("/docs/inventoryservice/v3/api-docs"),
+                        http())
+                .before(uri("http://localhost:8080"))
+                .filter((request, next) -> {
+                    ServerRequest modifiedRequest = ServerRequest.from(request)
+                            .uri(URI.create("http://localhost:8080/v3/api-docs"))
+                            .build();
+                    return next.handle(modifiedRequest);
+                })
                 .build();
     }
 }
